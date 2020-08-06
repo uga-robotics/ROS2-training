@@ -52,5 +52,7 @@ Just note that if you want to switch between working in ROS(1) and ROS2, you'll 
 
 After you've set up your alias', find a good place to store all of your ROS2 work. In later tutorials, you'll need to create new ROS2 workspaces, and having a central place to keep them is recommended.
 
+While not required, it is recommended to use a terminal emulator that supports tiling or tabbing. When working on ROS2 systems, its usually very useful to have multiple terminal sessions open at the same time, and having a terminal emulator that can handle it gracefully is essential. We recommend using either [GNOME Terminator](https://github.com/gnome-terminator/terminator#readme) or [Konsole](https://konsole.kde.org/).
+
 ## Next Steps
 After you've gotten comfortable in your ROS2 working environment, move on to the [turtlesim/rqt tutorial](turtlesim_rqt.md) to get an overview of key ROS2 concepts!
