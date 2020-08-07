@@ -2,7 +2,7 @@
 In this tutorial, we'll create our own workspace. A workspace is a directory that contains ROS2 packages. Workspaces can be layered to achieve desired functionality.
 
 ## Prerequisites
-Before we begin, source your ROS2 setup file. Check if Colcon is installed by running:
+Before we begin, source your ROS2 setup file. Check if **Colcon** is installed by running:
 ```
 colcon version-check
 ```
@@ -42,7 +42,7 @@ your output should look like this:
  ```
  If you receive an error follow [this tutorial](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install git.
 
- After ensuring git is installed, run the ``` rosdep``` command if you revieve an error follow [this tutorial](https://wiki.ros.org/rosdep#Installing_rosdep). Once all of that is completed and you have completed the [turtlesim/rqt tutorial](turtlesim_rqt.md) you are ready to create your first workspace.
+ After ensuring git is installed, run the `rosdep` command if you revieve an error follow [this tutorial](https://wiki.ros.org/rosdep#Installing_rosdep). Once all of that is completed and you have completed the [turtlesim/rqt tutorial](turtlesim_rqt.md) you are ready to create your first workspace.
 
  ## Creating a Workspace
 
@@ -50,7 +50,7 @@ your output should look like this:
  ```
  mkdir -p ~/dev_ws
  ```
- after running the command list the files in the current directory using the ```ls``` command the output of which should include the folder you just created. Navigate into the new directory using the ```cd``` command:
+ after running the command list the files in the current directory using the ```ls``` command the output of which should include the folder you just created. Navigate into the new directory using the `cd` command:
  ```
  cd dev_ws
  ```
@@ -60,11 +60,11 @@ your output should look like this:
  ```
  git clone https://github.com/ros/ros_tutorials.git -b foxy-devel
  ```
- List the files in the directory using the ```ls``` command, you should see:
+ List the files in the directory using the `ls` command, you should see:
  ```
  ros_tutorials
  ```
- Navigate into the **ros_tutorials** folder using ```cd``` and list the contents of the directory using ```ls``` You should see.
+ Navigate into the **ros_tutorials** folder using ``cd` and list the contents of the directory using `ls` You should see.
 
  ```
  roscpp_tutorials  rospy_tutorials  ros_tutorials  turtlesim
@@ -72,11 +72,11 @@ your output should look like this:
  We will uses these files to practice putting a workspace together.
 
  ## Resolving dependencies
- With files in your **src** folder we can start creating a fully functional workspace. We begin my resolving the dependencies in our packages. Dependency resolution ensures we have all the files we need to build our workspace. Using ```rosdep``` command we can automatically install all the dependencies that our packages need. Navigate the parent directory of the present working directory using ```cd ..``` and run the following command:
+ With files in your **src** folder we can start creating a fully functional workspace. We begin my resolving the dependencies in our packages. Dependency resolution ensures we have all the files we need to build our workspace. Using `rosdep` command we can automatically install all the dependencies that our packages need. Navigate the parent directory of the present working directory using `cd ..` and run the following command:
  ```
  rosdep install --from-paths src --rosdistro foxy -y
  ```
- The ```rosdep``` command will crawl the **src** directory looking for dependencies declared in **package.xml**, which you will learn about later, and will install them. Once the command has finished executing you will be able to build your workspace with colcon.
+ The `rosdep` command will crawl the **src** directory looking for dependencies declared in **package.xml**, which you will learn about later, and will install them. Once the command has finished executing you will be able to build your workspace with colcon.
 
  ## Building your Workspace
 
@@ -124,7 +124,7 @@ your output should look like this:
  ```
  A single workspace can contain as many packages as you want, each in their own folder. You can also have packages of different build types in the same workspace, but you can not have nested packages.
  ## Creating a package
- Navigate into the **dev_ws** directory with ```cd ~/dev_ws/src```. To create a ROS2 package run the following command:
+ Navigate into the **dev_ws** directory with `cd ~/dev_ws/src`. To create a ROS2 package run the following command:
  ```
  ros2 pkg create --build-type ament_cmake <package_name>
  ```
@@ -136,8 +136,10 @@ your output should look like this:
  ```
  hello world my_package package
  ```
- Navigate into **my_package** using ```cd ~/dev_ws/src/my_package``` and display the contents with ```ls```. You should see:
+ Navigate into **my_package** using `cd ~/dev_ws/src/my_package` and display the contents with `ls`. You should see:
  ```
  CMakeLists.txt  include  package.xml  src
  ```
  The definition for **my_node** is in the **src** folder. You will place all your custom nodes into this folder.
+ # Next Step
+ Now that you can create your own workspace and packages, it is time to make custom [publishers and subscribers](pub_sub.md).
