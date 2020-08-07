@@ -111,3 +111,33 @@ your output should look like this:
  setWindowTitle("My workspace");
  ```
  and rebuild the workspace using the first terminal. Return to the second terminal and rerun **turtlesim** it should "My workspace" for the title of the window. Run **tutlesim** in the first terminal, the title of the window should be "TurtleSim".
+
+ # Creating your first ROS2 package
+ Packages are containers for your ROS2 code. They allow you to share and install your code.
+
+ ## Package essentials
+ In order to make a package, you need to have a __*package.xml*__ file containing the meta information about your pacakage and ta __*CMakeLists.txt*__ file that describes how to build the code within the package. The simplest package structure possible is:
+ ```
+ my_package/
+   CMakeLists.txt
+   package.xml
+ ```
+ A single workspace can contain as many packages as you want, each in their own folder. You can also have packages of different build types in the same workspace, but you can not have nested packages.
+ ## Creating a package
+ Navigate into the **dev_ws** directory with ```cd ~/dev_ws/src```. To create a ROS2 package run the following command:
+ ```
+ ros2 pkg create --build-type ament_cmake <package_name>
+ ```
+ You will now have a folder in **src** called *my_package*. Build the workspace with the new package and source the workspace. Run the executable created using the __*--node-name*__ argument:
+ ```
+ ros2 run my_package my_node
+ ```
+ You should see the following message in the terminal:
+ ```
+ hello world my_package package
+ ```
+ Navigate into **my_package** using ```cd ~/dev_ws/src/my_package``` and display the contents with ```ls```. You should see:
+ ```
+ CMakeLists.txt  include  package.xml  src
+ ```
+ The definition for **my_node** is in the **src** folder. You will place all your custom nodes into this folder.
