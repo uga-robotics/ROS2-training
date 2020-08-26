@@ -242,3 +242,101 @@ ros2 run <package_name> <executable_name> --ros-args --params-file <file_name>
 Where `<file_name>` is the path to the parameter file.
 
 ## Actions
+Actions are another one of the communication types in ROS 2, and are intended for long running tasks. They consist of three parts: a goal, a result, and feedback. Actions are built on topics and services. Their functionality is similar to services, except actions are preemptable (you can cancel them while executing). They also provide steady feedback, as opposed to services which return a single response.
+
+Actions use a client-server model, similar to the publisher-subscriber model described in the topics section. The “action client” node sends a goal to an “action server” node that acknowledges the goal and returns a stream of feedback and a result.
+
+Make sure you've still got turtlesim running, and lets begin!
+
+### Actions in Turtlesim
+As we noted earlier on in this chapter, the turtlesim node happens to include some actions that we can utilize ourselves. When you launch the `/teleop_turtle` node, you will see the following message in your terminal:
+```
+Use arrow keys to move the turtle.
+Use G|B|V|C|D|E|R|T keys to rotate to absolute orientations. 'F' to cancel a rotation.
+```
+This second line is referring to a series of actions that you can use to rotate the turtle to select absolute orientations. Pay attention to the terminal where the `/turtlesim` node is running. Each time you press one of these keys, you are sending a goal to an action server that is part of the /turtlesim node. The goal is to rotate the turtle to face a particular direction. A message relaying the result of the goal should display once the turtle completes its rotation:
+```
+[INFO] [turtlesim]: Rotation goal completed successfully
+```
+The `F` key will cancel a goal mid-execution, demonstrating the preemptable feature of actions. Try pressing the `C` key, and then pressing the `F` key before the turtle can complete its rotation. In the terminal where the `/turtlesim` node is running, you will see the message:
+```
+[INFO] [turtlesim]: Rotation goal canceled
+```
+Not only can the client-side (your input in the teleop node) preempt goals, but the server-side (the `/turtlesim` node) can as well. When the server-side preempts an action, it “aborts” the goal. Try hitting the `D` key, then the `G` key before the first rotation can complete. In the terminal where the `/turtlesim` node is running, you will see the message:
+```
+[WARN] [turtlesim]: Rotation goal received before a previous goal finished. Aborting previous goal
+```
+Telling us that the server-side aborted the goal because it was interrupted. This is an important concept because it shows us that action servers don't have a "queue" of actions, the client should wait until the previous goal has finished before requesting a new goal.
+
+### Using Actions
+Much like in previous sections, we can do a bit of introspection on actions using commands like `ros2 action list` (which lists the currently available actions) and `ros2 action info <action_name>` will show some useful information about an action. For example, when we execute the command `ros2 action info /turtle1/rotate_absolute` we'll get the following output:
+```
+Action: /turtle1/rotate_absolute
+Action clients: 1
+    /teleop_turtle
+Action servers: 1
+    /turtlesim
+```
+Displaying the action name, client nodes, and server nodes.
+
+Much like topics and services, we can also use the command `ros2 interface show <interface location>` to show the format of actions, which are defined in `.action` files with the same syntax as message and service files. For example, if we use the `ros2 action list -t` command, we can see that the action `/turtle1/rotate_absolute` has the type `turtlesim/actions/RotateAbsolute`. So if we use the command `ros2 interface show turtlesim/action/RotateAbsolute.action`, the following output will be printed to the terminal:
+```
+# The desired heading in radians
+float32 theta
+---
+# The angular displacement in radians to the starting position
+float32 delta
+---
+# The remaining rotation in radians
+float32 remaining
+```
+
+With the first section (above the first `---`) defining the structure of the goal, the second defining the structure of the result, and the third defining the structure of the feedback.
+
+Now that we know how the action message is structured, we can use the `ros2 action send_goal <action_name> <action_type> <values>` command to send goals to turtlesim manually! As with topics and services, the `<values>` is the structure of the goal in YAML syntax. Say we want to have our turtle pointing straight up and down, we could use:
+```
+ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute "{theta: 1.57}"
+```
+which sends a goal to the action service with a "theta" value of 1.57 radians. You should then see some output similar to this:
+```
+Waiting for an action server to become available...
+Sending goal:
+   theta: 1.57
+
+Goal accepted with ID: f8db8f44410849eaa93d3feb747dd444
+
+Result:
+  delta: -1.568000316619873
+
+Goal finished with status: SUCCEEDED
+```
+Which has the goal, goal ID, result and result status. The goal ID is simply a unique identifier for that goal, the result is a "delta" value which shows the angular displacement of the turtle in radians, and the result status is used by the action client to tell if the goal SUCCEEDED, FAILED, etc. If you would like to also view the feedback for the action, you can use the `--feedback` option:
+```
+ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute "{theta: -1.57}" --feedback
+```
+Which will return output similar to this:
+```
+Sending goal:
+   theta: -1.57
+
+Goal accepted with ID: e6092c831f994afda92f0086f220da27
+
+Feedback:
+  remaining: -3.1268222332000732
+
+Feedback:
+  remaining: -3.1108222007751465
+
+…
+
+Result:
+  delta: 3.1200008392333984
+
+Goal finished with status: SUCCEEDED
+```
+With the feedback arriving in between the goal ID and the result. Feedback is recieved at whatever interval is set by the server until the goal is complete.
+
+## Summary
+In this tutorial, we covered all of the core ROS2 concepts you'll need to understand, as well as all of the most common tools you'll be using while developing ROS2 systems. Make sure you know these concepts like the back of your hand, this knowledge will prove invaluable as you dive deeper into ROS2!
+
+## Next Steps
