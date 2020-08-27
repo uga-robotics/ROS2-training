@@ -340,3 +340,4 @@ With the feedback arriving in between the goal ID and the result. Feedback is re
 In this tutorial, we covered all of the core ROS2 concepts you'll need to understand, as well as all of the most common tools you'll be using while developing ROS2 systems. Make sure you know these concepts like the back of your hand, this knowledge will prove invaluable as you dive deeper into ROS2!
 
 ## Next Steps
+before moving on to the workspace and programming tutorials, you should first work through the [common tools](common_tools.md) section, which provides a quick overview of other common tools in ROS2.

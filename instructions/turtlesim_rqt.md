@@ -104,4 +104,4 @@ As you can see above, ```rqt_graph``` draws nodes as ovals or circles and topics
 In ROS2, to shutdown a node, you can simply click on the desired terminal and perform a ```Ctrl-C```.
 
 ## Next Steps
-In the next section, we'll cover [nodes, topics, services, actions, and parameters]() in more detail.
+In the next section, we'll cover [nodes, topics, services, actions, and parameters](core_concepts.md) in more detail.
