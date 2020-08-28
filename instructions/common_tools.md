@@ -49,6 +49,117 @@ While you have `turtlesim` and `rqt_console` running, lets generate some warning
 As you can see, `rqt_console` will display the log message in its entirety, the severity level, the node it was generated in, and a timestamp. `rqt_console` also allows the developer to sort the messages by any of these parameters, making it a better solution to error tracking than the terminal window.
 
 ## Launch Files
+Launch files allow you to start up and configure a number of executables containing ROS 2 nodes simultaneously.In the tutorials up until now, you have been opening new terminals for every new node you run. As you create more complex systems with more and more nodes running simultaneously, opening terminals and reentering configuration details becomes tedious. Running a single launch file with the `ros2 launch` command will start up your entire system - all nodes and their configurations - at once.
 
+### Writing Launch Files
+Launch files are written in Python, giving the user greater flexibility in configuring their system, and allowing them to generate different configurations depending on different conditions. It also reduces the amount of syntax a developer has to hold in their head, as the old launch files (ROS1) used XML.
+
+To show it's utility, lets write a launch file for a relatively complex turtlesim system.
+
+First, create a launch file in any directory you wish using the `touch` command. Since we'll be using the turtlesim "mimic" node we'll call it `turtlesim_mimic_launch.py`:
+```
+touch turtlesim_mimic_launch.py
+```
+When the file is created, you should copy this content into, and we'll go through it piece by piece:
+```
+from launch import LaunchDescription
+from launch_ros.actions import Node
+
+def generate_launch_description():
+    return LaunchDescription([
+        Node(
+            package='turtlesim',
+            namespace='turtlesim1',
+            executable='turtlesim_node',
+            name='sim'
+        ),
+        Node(
+            package='turtlesim',
+            namespace='turtlesim2',
+            executable='turtlesim_node',
+            name='sim'
+        ),
+        Node(
+            package='turtlesim',
+            executable='mimic',
+            name='mimic',
+            remappings=[
+                ('/input/pose', '/turtlesim1/turtle1/pose'),
+                ('/output/cmd_vel', '/turtlesim2/turtle1/cmd_vel'),
+            ]
+        )
+    ])
+```
+The first couple of lines import the required ROS2 packages to create the launch file, as you can see it imports a `LaunchDescription` type, and a `Node` type. You can learn more about the way the launch systems works by reading the design documentation [here](https://design.ros2.org/articles/roslaunch.html) and the API documentation [here](https://github.com/ros2/launch/blob/master/launch/doc/source/architecture.rst).
+```
+from launch import LaunchDescription
+from launch_ros.actions import Node
+```
+Next, we can see the launch description itself begins using a standard function header and the `LaunchDescription` type we just imported:
+```
+def generate_launch_description():
+   return LaunchDescription([
+
+   ])
+```
+Within the `LaunchDescription` is a system of three nodes, all from the `turtlesim` package. The goal of the system is to launch two turtlesim windows, and have one turtle mimic the movements of the other.
+
+The first two actions in the launch description launch two turtlesim windows:
+```
+Node(
+    package='turtlesim',
+    namespace='turtlesim1',
+    executable='turtlesim_node',
+    name='sim'
+),
+Node(
+    package='turtlesim',
+    namespace='turtlesim2',
+    executable='turtlesim_node',
+    name='sim'
+),
+```
+Note the only difference between the two nodes is their namespace values. Unique namespaces allow the system to start two simulators without node name nor topic name conflicts.
+
+Both turtles in this system receive commands over the same topic and publish their pose over the same topic. Without unique namespaces, there would be no way to distinguish between messages meant for one turtle or the other.
+
+The final node is also from the `turtlesim` package, but a different executable: mimic.
+```
+Node(
+    package='turtlesim',
+    executable='mimic',
+    name='mimic',
+    remappings=[
+      ('/input/pose', '/turtlesim1/turtle1/pose'),
+      ('/output/cmd_vel', '/turtlesim2/turtle1/cmd_vel'),
+    ]
+)
+```
+This node has added configuration details in the form of remappings.
+
+mimic’s /input/pose topic is remapped to `/turtlesim1/turtle1/pose` and it’s `/output/cmd_vel` topic to `/turtlesim2/turtle1/cmd_vel`. This means mimic will subscribe to `/turtlesim1/sim`’s pose topic and republish it for `/turtlesim2/sim`’s velocity command topic to subscribe to. In other words, `turtlesim2` will mimic `turtlesim1`’s movements.
+
+### Using ROS2 Launch
+Next, we'll execute the launch description we just configured, and play around with the resulting system.
+
+In the same directory you created the launch file, execute the command:
+```
+ros2 launch turtlesim_mimic_launch.py
+```
+Two turtlesim windows will open, and you will see the following [INFO] messages telling you which nodes your launch file has started:
+```
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [turtlesim_node-1]: process started with pid [11714]
+[INFO] [turtlesim_node-2]: process started with pid [11715]
+[INFO] [mimic-3]: process started with pid [11716]
+```
+To see the system in action, open a new terminal and run this `ros2 topic pub` command on the `/turtlesim1/turtle1/cmd_vel` topic to get the first turtle moving:
+```
+ros2 topic pub -r 1 /turtlesim1/turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: -1.8}}"
+```
+You will see both turtles following the same path:
+`/turtlesim1`            |  `/turtlesim2`
+:-------------------------:|:-------------------------:
+![turtlesim with lines](resources/turtlesim8.png)  |  ![turtlesim without lines](resources/turtlesim9.png)
 
 ## ROS Bag
