@@ -163,3 +163,59 @@ You will see both turtles following the same path:
 ![turtlesim with lines](resources/turtlesim8.png)  |  ![turtlesim without lines](resources/turtlesim9.png)
 
 ## ROS Bag
+`ros2 bag` is a command line tool for recording data published on topics in your system. It accumulates the data passed on any number of topics and saves it in a database. You can then replay the data to reproduce the results of your tests and experiments. Recording topics is also a great way to share your work and allow others to recreate it. This will be essential for refining and debugging robots when you don't necessarily have access to the robot itself!
+
+Make sure you've got `turtlesim_node` and `turtle_teleop_node` running, and we can begin this section.
+
+### Recording with ROS Bag
+ros2 bag can only record data from topics that are published on. To see a list of your system’s topics, run `ros2 topic list`, which should return this output with `turtlesim` running:
+```
+/parameter_events
+/rosout
+/turtle1/cmd_vel
+/turtle1/color_sensor
+/turtle1/pose
+```
+With `ros2 bag`, you can record as many topics as you need into one "bag" file/directory, which will hold the message and time data of your selected topics in a database structure. We'll want to record the `/turtle1/cmd_vel` topic, which will record the movement of the turtle, and we'll also record `/turtle1/pose` which will record the position of the turtle model itself.
+
+To record the data published to a topic use the command:
+```
+ros2 bag record <topic_name(s)>
+```
+So, to record the data we want, we could use a command like:
+```
+ros2 bag record -o subset /turtle1/cmd_vel /turtle1/pose
+```
+Which will record the `/turtle1/cmd_vel` and `/turtle1/pose` topics into an output bag directory called "subset" in the current working. So let's use this command, and move around our turtle a little bit!
+
+![turtlesim bag 1](resources/turtlesim10.png)
+
+To stop recording, simply `Ctrl-C` in the window you have ROS Bag running in!
+
+Once we've stopped recording, we can get a little bit of information about the data we just recorded using the `ros2 bag info <bag_file_name>` command, which when used on our "subset" bag file, we get the output:
+```
+Files:             subset_0.db3
+Bag size:          77.3 KiB
+Storage id:        sqlite3
+Duration:          15.407s
+Start:             Aug 30 2020 00:35:43.419 (1598762143.419)
+End:               Aug 30 2020 00:35:58.827 (1598762158.827)
+Messages:          987
+Topic information: Topic: /turtle1/cmd_vel | Type: geometry_msgs/msg/Twist | Count: 23 | Serialization Format: cdr
+                   Topic: /turtle1/pose | Type: turtlesim/msg/Pose | Count: 964 | Serialization Format: cdr
+```
+Because the subset file recorded the `/turtle1/pose` topic, the ros2 bag play command won’t quit for as long as you had `turtlesim` running, even if you weren’t moving.
+
+This is because as long as the `/turtlesim` node is active, it publishes data on the `/turtle1/pose` topic at regular intervals. You may have noticed in the result above that the `/turtle1/cmd_vel` topic’s Count information was only 23; that’s how many times we pressed the arrow keys while recording.
+
+Notice that `/turtle1/pose` has a Count value of over 960; while we were recording, data was published on that topic 964 times.
+
+### Playing the ROS Bag
+To play the "subset" bag file, simply execute the command `ros2 bag play subset` in the directory with the bag file. Before replaying the bag file, enter Ctrl+C in the terminal where the teleop is running. Then make sure your turtlesim window is visible so you can see the bag file in action.
+
+Your turtle will follow the same path you entered while recording (though not 100% exactly; turtlesim is sensitive to small changes in the system’s timing).
+
+![turtlesim bag 2](resources/turtlesim11.png)
+
+## Next Steps
+Now that you've added some more ROS2 tools to your development toolbelt, you're ready to move on to actually writing writing ROS2 code! In the next tutorial, we'll learn about the build and dependancy system, and we'll [create our first ROS2 workspace and package](tbd)!
