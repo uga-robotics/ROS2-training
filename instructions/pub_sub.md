@@ -2,7 +2,7 @@
 I this tutorial we will create our first Publisher and Subscriber.
 
 ## Prerequisites
-Before beginning this tutorial you should have completed the [Core Concepts](https://index.ros.org/p/std_msgs/) and [Creating a Workspace](create_workspace.md) tutorials.
+[TODO] talk about C++ as our main language, gennerally using C++ for anything that needs to be even remotely "performant" or "realish-time" and using Python as a "scripting" language for quick tasks/nodes that don't necessarily need to perform tons of operations.
 
 ## Writing Nodes
 Start by creating a new ROS2 package in the **dev_ws** workspace called `cpp_pubsub`, remember to put packages in the **src** directory:
