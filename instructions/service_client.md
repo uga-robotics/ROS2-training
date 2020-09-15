@@ -1,5 +1,5 @@
 # Creating a Service and Client
-Using services one node sends a request for data called the client node, and the one that responds to the request is the service node. The structure of the request is determined my a `.srv` file.
+When Using services, one node, called the client node, sends a request for data to the service node. The structure of the request and the response is determined by a `.srv` file.
 ## Prerequisites
 Make sure you have completed the [create a workspace](create_workspace.md) tutorial.
 ## Creating a Package
@@ -14,7 +14,7 @@ int64 b
 ---
 int64 sum
 ```
-The first two lines are the request and the last line is the response.
+The first two lines define the request data type and variable and the last line is the response.
 
 ## Write the Service and Client Nodes
 
@@ -34,7 +34,7 @@ void add(const std::shared_ptr<example_interfaces::srv::AddTwoInts::Request> req
                 request->a, request->b); // Message indicating the request was recieved
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%ld]", (long int)response->sum); // Sends response to client
 }
-```   
+```
 In the `main` function, a node named "add_two_ints_server" is create along with the service named "add_two_ints" that calls `add` when a client sends a request. The server automatically advertised other the ROS2 network.
 ```
 std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("add_two_ints_server");
