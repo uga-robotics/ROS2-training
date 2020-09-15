@@ -27,12 +27,6 @@ int main(int argc, char **argv)
   rclcpp::shutdown();
 }
 
-2.1 Examine the code¶
-
-The first two #include statements are your package dependencies.
-
-The add function adds two integers from the request and gives the sum to the response, while notifying the console of its status using logs.
-
 void add(const std::shared_ptr<example_interfaces::srv::AddTwoInts::Request> request,
          std::shared_ptr<example_interfaces::srv::AddTwoInts::Response>      response)
 {

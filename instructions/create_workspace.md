@@ -127,23 +127,66 @@ Overlay            |  Underlay
 ![Overlay turtlesim](resources/MyTurtleSim.png)  |  ![Underlay turtlesim](resources/TurtleSim.png)
 
 ## Creating Your First ROS2 Package
-Packages are containers for your ROS2 code. They allow you to share and install your code.
+A package can be considered a container for your ROS 2 code. If you want to be able to install your code or share it with others, then you’ll need it organized in a package. With packages, you can release your ROS 2 work and allow others to build and use it easily.
+
+Package creation in ROS 2 uses ament as its build system and colcon as its build tool. You can create a package using either CMake or Python, which are officially supported, though other build types do exist. As we'll be writing ROS2 in both C++ and Python, we'll be using CMake, as it supports both languages.
 
 ### Package essentials
-In order to make a package, you need to have a `package.xml` file containing the meta information about your package and the `CMakeLists.txt` file that describes how to build the code within the package. The simplest package structure possible is:
+A CMake package needs to contain a `package.xml` file containing the meta information about your package and a `CMakeLists.txt` file that describes how to build the code within the package. The simplest possible package may have a file structure that looks like:
 ```
 my_package/
   CMakeLists.txt
   package.xml
 ```
-A single workspace can contain as many packages as you want, each in their own folder. You can also have packages of different build types in the same workspace, but you can not have nested packages.
+A single workspace can contain as many packages as you want, each in their own folder. You can also have packages of different build types in one workspace (CMake, Python, etc.). You cannot have nested packages.
+
+Best practice is to have a src folder within your workspace, and to create your packages in there. This keeps the top level of the workspace “clean”.
+
+A trivial workspace might look like:
+```
+workspace_folder/
+    src/
+      package_1/
+          CMakeLists.txt
+          package.xml
+
+      package_2/
+          setup.py
+          package.xml
+          resource/package_2
+      ...
+      package_n/
+          CMakeLists.txt
+          package.xml
+```
 
 ### Creating a package
-Navigate into the **dev_ws** directory with `cd ~/dev_ws/src`. To create a ROS2 package run the following command:
+Let’s use the workspace you created in the previous tutorial, `tutorial_ws`, for your new package.
+
+The command syntax for creating a new package in ROS 2 is:
 ```
 ros2 pkg create --build-type ament_cmake <package_name>
 ```
-You will now have a folder in **src** called *my_package*. Build the workspace with the new package and source the workspace. Run the executable created using the __*--node-name*__ argument:
+As you can see above, we can specify thing like the build type and package name, in our case, we'll want to use the ament_cmake build type for all of our packages. For this tutorial, you will use the optional `--node-name` argument which creates a simple "Hello World" type executable in the package. Make sure you are in the `src` folder of the workspace before running the package creation command:
+```
+ros2 pkg create --build-type ament_cmake --node-name my_node my_package
+```
+Which will create a package named `my_package` including the previously mentioned example node.
+
+### Building Packages
+Putting packages in a workspace is especially valuable because you can build many packages at once by running colcon build in the workspace root. Otherwise, you would have to build each package individually.
+
+Return to the root of your workspace and run the command `colcon build`. Recall from the previous section that you also have the `ros_tutorials` packages in your `tutorial_ws`. You might’ve noticed that running colcon build also built the `turtlesim` package. That’s fine when you only have a few packages in your workspace, but when there are many packages, colcon build can take a long time.
+
+To build only the `my_package` package next time, you can run:
+```
+colcon build --packages-select my_package
+```
+To use your new package and executable, open a new initialized terminal inside the `tutorial_ws` directory, run the `. install/setup.bash` command to source your workspace. 
+
+Note that for all of the underlays and overlays in ROS2, the setup files are generated in a number of different shell scripting languages such as `bash`, `zsh`, `sh`, and `powershell`. To source the files for these shells, simply execute the same command, replacing `setup.bash` with `setup.zsh`, `setup.sh`, or `setup.ps1` respectively.
+
+Now that your workspace has been added to your path, you will be able to use your new package’s executables. To run the executable you created using the --node-name argument during package creation, enter the command:
 ```
 ros2 run my_package my_node
 ```
@@ -151,11 +194,53 @@ You should see the following message in the terminal:
 ```
 hello world my_package package
 ```
-Navigate into **my_package** using `cd ~/dev_ws/src/my_package` and display the contents with `ls`. You should see:
+### Inspecting Package Contents
+Inside `tutorial_ws/src/my_package`, you will see the files and folders that `ros2 pkg create` automatically generated:
 ```
 CMakeLists.txt  include  package.xml  src
 ```
-The definition for **my_node** is in the **src** folder. You will place all your custom nodes into this folder.
+`my_node.cpp` is inside the `src` directory. This is where all your custom C++ executables will go in the future, while all of your Python executables with reside in the `scripts` directory. the `include` directory is mean't to contain any non-ROS2 C++ dependancies for this particular package, in other words it's mean't for C++ header files.
+
+Next, we'll talk a bit about the `package.xml` file.
+
+As mentioned previously, the `package.xml` file is mean't to provide meta information for your ROS2 package. For example, if you open up the `package.xml` file in your `my_package` package, you should see something very similar to this:
+```
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>my_package</name>
+  <version>0.0.0</version>
+  <description>TODO: Package description</description>
+  <maintainer email="user@email.com">user</maintainer>
+  <license>TODO: License declaration</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+```
+Input your name and email on line 7 if it hasn’t been automatically populated for you. Then, edit the description on line 6 to summarize the package:
+
+```xml
+<description>Beginner client libraries tutorials practice package</description>
+```
+
+Then, update the license on line 8. You can read more about open source licenses [here](https://opensource.org/licenses/alphabetical).
+
+Since this package is only for practice, it’s safe to use any license. Here we'll use the `Apache License 2.0`:
+
+```xml
+<license>Apache License 2.0</license>
+```
+Don’t forget to save once you’re done editing.
+
+Below the license tag, you will see some tag names ending with `_depend`. This is where your `package.xml` would list its dependencies on other packages, for `colcon` to search for. `my_package` is simple and doesn’t have any dependencies, but you will see this space being utilized in upcoming tutorials.
+
 
 ## Next Steps
 Now that you can create your own workspace and packages, it is time to make custom [publishers and subscribers](pub_sub.md).
