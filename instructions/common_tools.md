@@ -2,7 +2,7 @@
 In this tutorial we'll cover some of the other common tools used in ROS2 development. These include the **rqt_console** plugin, **Launch files**, and the **ROS Bag System**.
 
 ## rqt_console
-`rqt_console` is a GUI tool used to introspect log messages in ROS 2. Nodes use logs to output messages concerning events and statuses in a variety of ways. Their content is usually informational, for the sake of the user. The intent of a log message is defined by the author of the node, though the content may be written at runtime. 
+`rqt_console` is a GUI tool used to introspect log messages in ROS 2. Nodes use logs to output messages concerning events and statuses in a variety of ways. Their content is usually informational, for the sake of the user. The intent of a log message is defined by the author of the node, though the content may be written at runtime.
 
 Typically, log messages show up in your terminal. With `rqt_console`, you can collect those messages over time, view them closely and in a more organized manner, filter them, save them and even reload the saved files to introspect at a different time.
 
@@ -218,4 +218,4 @@ Your turtle will follow the same path you entered while recording (though not 10
 ![turtlesim bag 2](resources/turtlesim11.png)
 
 ## Next Steps
-Now that you've added some more ROS2 tools to your development toolbelt, you're ready to move on to actually writing writing ROS2 code! In the next tutorial, we'll learn about the build and dependancy system, and we'll [create our first ROS2 workspace and package](tbd)!
+Now that you've added some more ROS2 tools to your development toolbelt, you're ready to move on to actually writing writing ROS2 code! In the next tutorial, we'll learn about the build and dependency system, and we'll [create our first ROS2 workspace and package](tbd)!

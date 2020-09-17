@@ -44,10 +44,10 @@ The next line creates the node class `MinimalPublisher` by inheriting from `rclc
 class MinimalPublisher : public rclcpp::Node
 ```
 
-The public constructor names the node `minimal_publisher` and initializes `count_` to 0. Inside the constructor, the publisher is initialized with the `String` message type, the topic name `topic`, and the required queue size to limit messages in the event of a backup. Next, `timer_` is initialized with the parameters, which causes the `timer_callback` function to be executed twice a second. This is where our `using namespace std::chrono_literals;` declarations comes in handy, because we can easily set the timer to 500ms (half a second) between callbacks. 
+The public constructor names the node `minimal_publisher` and initializes `count_` to 0. Inside the constructor, the publisher is initialized with the `String` message type, the topic name `topic`, and the required queue size to limit messages in the event of a backup. Next, `timer_` is initialized with the parameters, which causes the `timer_callback` function to be executed twice a second. This is where our `using namespace std::chrono_literals;` declarations comes in handy, because we can easily set the timer to 500ms (half a second) between callbacks.
 
 Callbacks are essential to the way ROS2 operates, it is essentially a function that gets called when a particular event happens, such as when a timer goes off, or when a new message appears on a topic (as we'll see in the subscriber section).
- 
+
 ```C++
 public:
   MinimalPublisher()
@@ -72,7 +72,7 @@ Private:
   }
 ```
 
-Last in the class definition is the delcaration of our timer, publisher, and counter fields. The publisher is created via a template, which takes in the ROS2 message type you want to publish. 
+Last in the class definition is the delcaration of our timer, publisher, and counter fields. The publisher is created via a template, which takes in the ROS2 message type you want to publish.
 
 You might have noticied the weird `SharedPtr` after the publisher and timer declarations, this is a built-in smart pointer definition which the ROS2 Client Library defines. If you're not familiar with C++14 or smart pointers, they are essentially managed pointers, which don't need to be manually destroyed by the programmer like a regular pointer. You can read more about smart pointers and their various types [here](https://docs.microsoft.com/en-us/cpp/cpp/smart-pointers-modern-cpp?view=vs-2019).
 
@@ -94,11 +94,11 @@ int main(int argc, char * argv[])
 }
 ```
 
-## Adding Dependancies to CMakeLists.txt and package.xml
+## Adding Dependencies to CMakeLists.txt and package.xml
 Navigate one level back to the `tutorial_ws/src/cpp_pubsub` directory, where the `CMakeLists.txt` and `package.xml` files have been created for you.
 
 ### Package.xml
-Open `package.xml` with your text editor. 
+Open `package.xml` with your text editor.
 
 As mentioned in the previous tutorial, make sure to fill in the `<description>`, `<maintainer>` and `<license>` tags:
 
