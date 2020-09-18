@@ -49,7 +49,7 @@ While you have `turtlesim` and `rqt_console` running, lets generate some warning
 As you can see, `rqt_console` will display the log message in its entirety, the severity level, the node it was generated in, and a timestamp. `rqt_console` also allows the developer to sort the messages by any of these parameters, making it a better solution to error tracking than the terminal window.
 
 ## Launch Files
-Launch files allow you to start up and configure a number of executables containing ROS 2 nodes simultaneously.In the tutorials up until now, you have been opening new terminals for every new node you run. As you create more complex systems with more and more nodes running simultaneously, opening terminals and reentering configuration details becomes tedious. Running a single launch file with the `ros2 launch` command will start up your entire system - all nodes and their configurations - at once.
+Launch files allow you to start up and configure a number of executables containing ROS 2 nodes simultaneously. In the tutorials up until now, you have been opening new terminals for every new node you run. As you create more complex systems with more and more nodes running simultaneously, opening terminals and reentering configuration details becomes tedious. Running a single launch file with the `ros2 launch` command will start up your entire system - all nodes and their configurations - at once.
 
 ### Writing Launch Files
 Launch files are written in Python, giving the user greater flexibility in configuring their system, and allowing them to generate different configurations depending on different conditions. It also reduces the amount of syntax a developer has to hold in their head, as the old launch files (ROS1) used XML.
