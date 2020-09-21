@@ -1,9 +1,9 @@
 # An overview of ROS2 Workspaces and Packages
-In this tutorial, we'll create our first ROS2 workspace and package. A workspace is a directory containing ROS 2 packages, which aid in managing dependancies for said packages, and help to isolate project-specific dependancies from one another.
+In this tutorial, we'll create our first ROS2 workspace and package. A workspace is a directory containing ROS 2 packages, which aid in managing dependencies for said packages, and help to isolate project-specific dependencies from one another.
 
 Whenever you source your ROS2 setup file (or run your "ros2init" alias), you're really sourcing the "main" or "installation" ROS2 workspace, which contains all of the standard packages, and any additional packages you've downloaded through `apt` or a similar package manager.
 
-You also have the option of sourcing an “overlay” – a secondary workspace where you can add new packages without interfering with the existing ROS 2 workspace (or “underlay”) that you’re extending. Your underlay must contain the dependencies of all the packages in your overlay. Packages in your overlay will override packages in the underlay. It’s also possible to have several layers of underlays and overlays, with each successive overlay using the packages of its parent underlays. 
+You also have the option of sourcing an “overlay” – a secondary workspace where you can add new packages without interfering with the existing ROS 2 workspace (or “underlay”) that you’re extending. Your underlay must contain the dependencies of all the packages in your overlay. Packages in your overlay will override packages in the underlay. It’s also possible to have several layers of underlays and overlays, with each successive overlay using the packages of its parent underlays.
 
 Much in the way that you would create [layers of abstraction](https://en.wikipedia.org/wiki/Abstraction_layer) when writing software, workspaces allow robotics developers to create layers of ROS2 packages which implement increasingly complex operations, while maintaining clean code and clean workspaces (not cluttered or overrun with 100s or 1000s of packages).
 
@@ -67,8 +67,8 @@ git clone https://github.com/ros/ros_tutorials.git -b foxy-devel
 Now you have populated your workspace with a sample package, but it isn’t a fully-functional workspace yet. You need to resolve dependencies and build the workspace first.
 
 ### Resolving dependencies
-With files in your `src` folder we can start creating a fully functional workspace. We begin by resolving the dependencies in our packages. In ROS2 a dependency (much like in most of software development) is a package of software that we need to have available in order for software we are using or developing to work as intended. Dependency resolution ensures we have all the files we need to build our workspace. 
- 
+With files in your `src` folder we can start creating a fully functional workspace. We begin by resolving the dependencies in our packages. In ROS2 a dependency (much like in most of software development) is a package of software that we need to have available in order for software we are using or developing to work as intended. Dependency resolution ensures we have all the files we need to build our workspace.
+
 Using the `rosdep` command, we can automatically install all the dependencies that our packages need. From the root of your workspace (`tutorial_ws/`), run the following command:
 ```
 rosdep install --from-paths src --rosdistro foxy -y
@@ -77,7 +77,7 @@ Packages declare their dependencies in the `package.xml` file (you will learn mo
 ```
 #All required rosdeps installed successfully
 ```
- 
+
 Now that all dependancies are met, you will be able to build your workspace with the ROS2 build tool: `colcon`.
 
 ### Building your Workspace
@@ -108,7 +108,7 @@ source install/local_setup.bash
 ```
 `local_setup.bash` only adds the packages available in the current overlay to the environment, to source the current overlay and its underlays use `setup.bash`. So, sourcing your main ROS 2 installation’s `setup.bash` and then the `tutorial_ws` overlay’s `local_setup.bash`, like you just did, is the same as just sourcing `tutorial_ws`’s `setup.bash`, because that includes the environment of the underlay it was created in.
 
-You will now be able to run `turtlesim`, but how do we know we're running the turtlesim package we just built instead of the one in the main ROS2 installation? Well, we can modify and rebuild turtlesim, and then test it out! 
+You will now be able to run `turtlesim`, but how do we know we're running the turtlesim package we just built instead of the one in the main ROS2 installation? Well, we can modify and rebuild turtlesim, and then test it out!
 
 ### Modifying the Overlay
 
@@ -182,7 +182,7 @@ To build only the `my_package` package next time, you can run:
 ```
 colcon build --packages-select my_package
 ```
-To use your new package and executable, open a new initialized terminal inside the `tutorial_ws` directory, run the `. install/setup.bash` command to source your workspace. 
+To use your new package and executable, open a new initialized terminal inside the `tutorial_ws` directory, run the `. install/setup.bash` command to source your workspace.
 
 Note that for all of the underlays and overlays in ROS2, the setup files are generated in a number of different shell scripting languages such as `bash`, `zsh`, `sh`, and `powershell`. To source the files for these shells, simply execute the same command, replacing `setup.bash` with `setup.zsh`, `setup.sh`, or `setup.ps1` respectively.
 
