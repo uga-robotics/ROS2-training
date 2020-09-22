@@ -317,3 +317,4 @@ a: 1 b: 2
 Enter `Ctrl+C` in the server terminal to stop the node from spinning.
 
 ## Next Steps
+Now that you know the basics of writing publisher/subscriber and Service/Client Nodes in ROS2, you can move on to creating new message and service types in the [Creating a ROS2 Interface tutorial](custom_ros2_interface.md).
