@@ -238,4 +238,4 @@ You should see the following message displayed in the terminal:
 ```
 
 ## Next Steps
-This concludes the UGA Robotics Club introductory tutorials for ROS2! Although we've actually already covered a lot of the topic in them, you should be able to work through the [Intermediate and Advanced ROS2 tutorials](https://index.ros.org/doc/ros2/Tutorials/) on your own, with more advanced topics like Robot Localization and Navigation Systems, Gazebo/TF/URDF, etc. will be covered in workshops in the future.
+This concludes the UGA Robotics Club introductory tutorials for ROS2! Although we've actually already covered a lot of the topic in them, you should be able to work through the [Intermediate and Advanced ROS2 tutorials](https://index.ros.org/doc/ros2/Tutorials/) on your own, with more advanced topics like Robot Localization and Navigation Systems, Gazebo/TF/URDF, etc. being covered in workshops in the future.
