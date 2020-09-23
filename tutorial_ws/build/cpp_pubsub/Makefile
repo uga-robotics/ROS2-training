@@ -168,6 +168,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named listener_num
+
+# Build rule for target.
+listener_num: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 listener_num
+.PHONY : listener_num
+
+# fast build rule for target.
+listener_num/fast:
+	$(MAKE) -f CMakeFiles/listener_num.dir/build.make CMakeFiles/listener_num.dir/build
+.PHONY : listener_num/fast
+
+#=============================================================================
+# Target rules for targets named talker_num
+
+# Build rule for target.
+talker_num: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 talker_num
+.PHONY : talker_num
+
+# fast build rule for target.
+talker_num/fast:
+	$(MAKE) -f CMakeFiles/talker_num.dir/build.make CMakeFiles/talker_num.dir/build
+.PHONY : talker_num/fast
+
+#=============================================================================
 # Target rules for targets named listener
 
 # Build rule for target.
@@ -246,6 +272,33 @@ src/publisher_member_function.cpp.s:
 	$(MAKE) -f CMakeFiles/talker.dir/build.make CMakeFiles/talker.dir/src/publisher_member_function.cpp.s
 .PHONY : src/publisher_member_function.cpp.s
 
+src/publisher_member_function_num.o: src/publisher_member_function_num.cpp.o
+
+.PHONY : src/publisher_member_function_num.o
+
+# target to build an object file
+src/publisher_member_function_num.cpp.o:
+	$(MAKE) -f CMakeFiles/talker_num.dir/build.make CMakeFiles/talker_num.dir/src/publisher_member_function_num.cpp.o
+.PHONY : src/publisher_member_function_num.cpp.o
+
+src/publisher_member_function_num.i: src/publisher_member_function_num.cpp.i
+
+.PHONY : src/publisher_member_function_num.i
+
+# target to preprocess a source file
+src/publisher_member_function_num.cpp.i:
+	$(MAKE) -f CMakeFiles/talker_num.dir/build.make CMakeFiles/talker_num.dir/src/publisher_member_function_num.cpp.i
+.PHONY : src/publisher_member_function_num.cpp.i
+
+src/publisher_member_function_num.s: src/publisher_member_function_num.cpp.s
+
+.PHONY : src/publisher_member_function_num.s
+
+# target to generate assembly for a file
+src/publisher_member_function_num.cpp.s:
+	$(MAKE) -f CMakeFiles/talker_num.dir/build.make CMakeFiles/talker_num.dir/src/publisher_member_function_num.cpp.s
+.PHONY : src/publisher_member_function_num.cpp.s
+
 src/subscriber_member_function.o: src/subscriber_member_function.cpp.o
 
 .PHONY : src/subscriber_member_function.o
@@ -273,6 +326,33 @@ src/subscriber_member_function.cpp.s:
 	$(MAKE) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/subscriber_member_function.cpp.s
 .PHONY : src/subscriber_member_function.cpp.s
 
+src/subscriber_member_function_num.o: src/subscriber_member_function_num.cpp.o
+
+.PHONY : src/subscriber_member_function_num.o
+
+# target to build an object file
+src/subscriber_member_function_num.cpp.o:
+	$(MAKE) -f CMakeFiles/listener_num.dir/build.make CMakeFiles/listener_num.dir/src/subscriber_member_function_num.cpp.o
+.PHONY : src/subscriber_member_function_num.cpp.o
+
+src/subscriber_member_function_num.i: src/subscriber_member_function_num.cpp.i
+
+.PHONY : src/subscriber_member_function_num.i
+
+# target to preprocess a source file
+src/subscriber_member_function_num.cpp.i:
+	$(MAKE) -f CMakeFiles/listener_num.dir/build.make CMakeFiles/listener_num.dir/src/subscriber_member_function_num.cpp.i
+.PHONY : src/subscriber_member_function_num.cpp.i
+
+src/subscriber_member_function_num.s: src/subscriber_member_function_num.cpp.s
+
+.PHONY : src/subscriber_member_function_num.s
+
+# target to generate assembly for a file
+src/subscriber_member_function_num.cpp.s:
+	$(MAKE) -f CMakeFiles/listener_num.dir/build.make CMakeFiles/listener_num.dir/src/subscriber_member_function_num.cpp.s
+.PHONY : src/subscriber_member_function_num.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -283,6 +363,8 @@ help:
 	@echo "... install/local"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... listener_num"
+	@echo "... talker_num"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
@@ -293,9 +375,15 @@ help:
 	@echo "... src/publisher_member_function.o"
 	@echo "... src/publisher_member_function.i"
 	@echo "... src/publisher_member_function.s"
+	@echo "... src/publisher_member_function_num.o"
+	@echo "... src/publisher_member_function_num.i"
+	@echo "... src/publisher_member_function_num.s"
 	@echo "... src/subscriber_member_function.o"
 	@echo "... src/subscriber_member_function.i"
 	@echo "... src/subscriber_member_function.s"
+	@echo "... src/subscriber_member_function_num.o"
+	@echo "... src/subscriber_member_function_num.i"
+	@echo "... src/subscriber_member_function_num.s"
 .PHONY : help
 
 

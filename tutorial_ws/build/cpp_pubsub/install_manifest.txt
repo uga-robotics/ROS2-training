@@ -1,5 +1,7 @@
 /home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/install/cpp_pubsub/lib/cpp_pubsub/talker
 /home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/install/cpp_pubsub/lib/cpp_pubsub/listener
+/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/install/cpp_pubsub/lib/cpp_pubsub/talker_num
+/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/install/cpp_pubsub/lib/cpp_pubsub/listener_num
 /home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/install/cpp_pubsub/share/ament_index/resource_index/package_run_dependencies/cpp_pubsub
 /home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/install/cpp_pubsub/share/ament_index/resource_index/parent_prefix_path/cpp_pubsub
 /home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/install/cpp_pubsub/share/cpp_pubsub/environment/ament_prefix_path.sh

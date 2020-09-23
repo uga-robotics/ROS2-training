@@ -7,14 +7,6 @@
 #IncludeRegexTransform: 
 
 /home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/src/cpp_pubsub/src/publisher_member_function.cpp
-chrono
--
-functional
--
-memory
--
-string
--
 rclcpp/rclcpp.hpp
 /home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/src/cpp_pubsub/src/rclcpp/rclcpp.hpp
 std_msgs/msg/string.hpp
