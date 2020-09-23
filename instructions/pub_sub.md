@@ -20,11 +20,13 @@ wget -O publisher_member_function.cpp https://raw.githubusercontent.com/ros2/exa
 ```
 After you've got the file downloaded, open it up in your preffered text editor, we'll go through it line by line, and explain what each section is doing.
 
-The top of the code includes the standard C++ headers you will be including when making any ROS2 executable. The top block here contains includes from the C++ standard library which ROS2 depends on. The bottom block has the `rclcpp/rclcpp.hpp` include which allows you to use the most common pieces of the ROS 2 system, and `std_msgs/msg/string.hpp`, which includes the built-in message type you will use to publish data. You can see a full list of standard ROS2 message types [here]().
+The top of the code includes some of the standard C++ headers you will need to include when making ROS2 executables. The top block here contains includes from the C++ standard library which are used to interact with the ROS2 Client Library in various ways.
 
-The last bit of this code block has a namespace delcaration, which is simply to make available all of the chronographic literals from the `chrono` standard library. ROS2 uses these literals when creating timers, as we'll see later.
+The bottom block has the `rclcpp/rclcpp.hpp` include which imports the C++ ROS2 Client Library, allowing you to use the most common pieces of the ROS2 system, and `std_msgs/msg/string.hpp`, which includes the built-in message type you will use to publish data.
 
-These lines represent the node’s dependencies. Recall that dependencies have to be added to package.xml and CMakeLists.txt, which you’ll do in the next section.
+The last bit of this code block has a namespace delcaration, which is simply to make available all of the chronographic literals from the `<chrono>` standard library. ROS2 uses these literals when creating timers, as we'll see later.
+
+These lines represent the node’s dependencies. Recall that dependencies have to be added to `package.xml` and `CMakeLists.txt`, which you’ll do in the next section.
 
 ```c++
 #include <chrono>
@@ -44,9 +46,11 @@ The next line creates the node class `MinimalPublisher` by inheriting from `rclc
 class MinimalPublisher : public rclcpp::Node
 ```
 
-The public constructor names the node `minimal_publisher` and initializes `count_` to 0. Inside the constructor, the publisher is initialized with the `String` message type, the topic name `topic`, and the required queue size to limit messages in the event of a backup. Next, `timer_` is initialized with the parameters, which causes the `timer_callback` function to be executed twice a second. This is where our `using namespace std::chrono_literals;` declarations comes in handy, because we can easily set the timer to 500ms (half a second) between callbacks.
+The public constructor names the node `minimal_publisher` and initializes `count_` to 0. Inside the constructor, the publisher is initialized with the `String` message type, the topic name `topic`, and the required queue size to limit messages in the event of a backup. 
 
-Callbacks are essential to the way ROS2 operates, it is essentially a function that gets called when a particular event happens, such as when a timer goes off, or when a new message appears on a topic (as we'll see in the subscriber section).
+Next, `timer_` is initialized with the parameters, which causes the `timer_callback` function to be executed twice a second. This is where our `using namespace std::chrono_literals;` declaration comes in handy, because we can easily set the timer to 500ms (half a second) between callbacks.
+
+Callbacks are essential to the way ROS2 operates, it is a function that gets called when a particular event happens, such as when a timer goes off, or when a new message appears on a topic (as we'll see in the subscriber section).
 
 ```C++
 public:

@@ -49,11 +49,16 @@ If you receive an error follow [this tutorial](https://git-scm.com/book/en/v2/Ge
 After ensuring git is installed, run the `rosdep` command if you recieve an error follow [this tutorial](https://wiki.ros.org/rosdep#Installing_rosdep). Once all of that is completed you are ready to create your first workspace.
 
 ## Creating and Building a Workspace
-Best practice is to create a new directory for every new workspace. We would recommend keeping your ROS2 workspace directories in a central directory, so if you don't already have a place to keep them, create one! The name doesn’t matter, but it is helpful to have it indicate the purpose of the workspace. Let’s choose the directory name `tutorial_ws`, for "tutorial workspace”:
+Best practice is to create a new directory for every new workspace. We would recommend keeping your ROS2 workspace directories in a central directory, so if you don't already have a place to keep them, create one! The name doesn’t matter, but it is helpful to have it indicate the purpose of the workspace.
+
+Let’s choose the directory name `tutorial_ws`, for "tutorial workspace”:
 ```
 mkdir -p tutorial_ws/
 cd tutorial_ws/
 ```
+
+A sample version of the `tutorial_ws` workspace is available in the root of this Github repository for reference. However, we do recommend following along with the tutorial, and creating your `tutorial_ws` workspace as an exercise.
+
 Also create another directory called `src` and navigate into it. Generally, ROS2 packages should be placed in the `src` directory of the workspace.
 
 In the rest of these tutorials, you'll create your own packages, but for now you will practice putting a workspace together using existing packages.

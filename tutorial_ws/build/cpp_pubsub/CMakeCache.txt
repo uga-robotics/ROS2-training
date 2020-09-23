@@ -272,7 +272,7 @@ SITE:STRING=Kevins-Workstation
 TinyXML2_DIR:PATH=TinyXML2_DIR-NOTFOUND
 
 //Path to a library.
-_lib:FILEPATH=/opt/ros/foxy/lib/librosgraph_msgs__rosidl_typesupport_fastrtps_cpp.so
+_lib:FILEPATH=/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/install/tutorial_interfaces/lib/libtutorial_interfaces__rosidl_typesupport_fastrtps_cpp.so
 
 //The directory containing a CMake configuration file for ament_cmake.
 ament_cmake_DIR:PATH=/opt/ros/foxy/share/ament_cmake/cmake
@@ -441,6 +441,9 @@ std_msgs_DIR:PATH=/opt/ros/foxy/share/std_msgs/cmake
 
 //The directory containing a CMake configuration file for tracetools.
 tracetools_DIR:PATH=/opt/ros/foxy/share/tracetools/cmake
+
+//The directory containing a CMake configuration file for tutorial_interfaces.
+tutorial_interfaces_DIR:PATH=/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/install/tutorial_interfaces/share/tutorial_interfaces/cmake
 
 //The directory containing a CMake configuration file for yaml.
 yaml_DIR:PATH=/opt/ros/foxy/cmake

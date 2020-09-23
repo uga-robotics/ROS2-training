@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/ktkoffroth/Documents/UGA Robotics Club/ROS2-Training/tutorial_ws/src/cpp_srvcli"
+CMAKE_SOURCE_DIR = "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/src/cpp_srvcli"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/ktkoffroth/Documents/UGA Robotics Club/ROS2-Training/tutorial_ws/build/cpp_srvcli"
+CMAKE_BINARY_DIR = "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/build/cpp_srvcli"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -137,9 +137,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/ktkoffroth/Documents/UGA Robotics Club/ROS2-Training/tutorial_ws/build/cpp_srvcli/CMakeFiles" "/home/ktkoffroth/Documents/UGA Robotics Club/ROS2-Training/tutorial_ws/build/cpp_srvcli/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/build/cpp_srvcli/CMakeFiles" "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/build/cpp_srvcli/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/ktkoffroth/Documents/UGA Robotics Club/ROS2-Training/tutorial_ws/build/cpp_srvcli/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/build/cpp_srvcli/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -168,6 +168,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named server_three
+
+# Build rule for target.
+server_three: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 server_three
+.PHONY : server_three
+
+# fast build rule for target.
+server_three/fast:
+	$(MAKE) -f CMakeFiles/server_three.dir/build.make CMakeFiles/server_three.dir/build
+.PHONY : server_three/fast
+
+#=============================================================================
 # Target rules for targets named client
 
 # Build rule for target.
@@ -194,6 +207,19 @@ server/fast:
 .PHONY : server/fast
 
 #=============================================================================
+# Target rules for targets named client_three
+
+# Build rule for target.
+client_three: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 client_three
+.PHONY : client_three
+
+# fast build rule for target.
+client_three/fast:
+	$(MAKE) -f CMakeFiles/client_three.dir/build.make CMakeFiles/client_three.dir/build
+.PHONY : client_three/fast
+
+#=============================================================================
 # Target rules for targets named cpp_srvcli_uninstall
 
 # Build rule for target.
@@ -218,6 +244,60 @@ uninstall: cmake_check_build_system
 uninstall/fast:
 	$(MAKE) -f CMakeFiles/uninstall.dir/build.make CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
+
+src/add_three_ints_client.o: src/add_three_ints_client.cpp.o
+
+.PHONY : src/add_three_ints_client.o
+
+# target to build an object file
+src/add_three_ints_client.cpp.o:
+	$(MAKE) -f CMakeFiles/client_three.dir/build.make CMakeFiles/client_three.dir/src/add_three_ints_client.cpp.o
+.PHONY : src/add_three_ints_client.cpp.o
+
+src/add_three_ints_client.i: src/add_three_ints_client.cpp.i
+
+.PHONY : src/add_three_ints_client.i
+
+# target to preprocess a source file
+src/add_three_ints_client.cpp.i:
+	$(MAKE) -f CMakeFiles/client_three.dir/build.make CMakeFiles/client_three.dir/src/add_three_ints_client.cpp.i
+.PHONY : src/add_three_ints_client.cpp.i
+
+src/add_three_ints_client.s: src/add_three_ints_client.cpp.s
+
+.PHONY : src/add_three_ints_client.s
+
+# target to generate assembly for a file
+src/add_three_ints_client.cpp.s:
+	$(MAKE) -f CMakeFiles/client_three.dir/build.make CMakeFiles/client_three.dir/src/add_three_ints_client.cpp.s
+.PHONY : src/add_three_ints_client.cpp.s
+
+src/add_three_ints_server.o: src/add_three_ints_server.cpp.o
+
+.PHONY : src/add_three_ints_server.o
+
+# target to build an object file
+src/add_three_ints_server.cpp.o:
+	$(MAKE) -f CMakeFiles/server_three.dir/build.make CMakeFiles/server_three.dir/src/add_three_ints_server.cpp.o
+.PHONY : src/add_three_ints_server.cpp.o
+
+src/add_three_ints_server.i: src/add_three_ints_server.cpp.i
+
+.PHONY : src/add_three_ints_server.i
+
+# target to preprocess a source file
+src/add_three_ints_server.cpp.i:
+	$(MAKE) -f CMakeFiles/server_three.dir/build.make CMakeFiles/server_three.dir/src/add_three_ints_server.cpp.i
+.PHONY : src/add_three_ints_server.cpp.i
+
+src/add_three_ints_server.s: src/add_three_ints_server.cpp.s
+
+.PHONY : src/add_three_ints_server.s
+
+# target to generate assembly for a file
+src/add_three_ints_server.cpp.s:
+	$(MAKE) -f CMakeFiles/server_three.dir/build.make CMakeFiles/server_three.dir/src/add_three_ints_server.cpp.s
+.PHONY : src/add_three_ints_server.cpp.s
 
 src/add_two_ints_client.o: src/add_two_ints_client.cpp.o
 
@@ -282,14 +362,22 @@ help:
 	@echo "... install/strip"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... server_three"
 	@echo "... client"
 	@echo "... install/local"
 	@echo "... server"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... client_three"
 	@echo "... cpp_srvcli_uninstall"
 	@echo "... uninstall"
+	@echo "... src/add_three_ints_client.o"
+	@echo "... src/add_three_ints_client.i"
+	@echo "... src/add_three_ints_client.s"
+	@echo "... src/add_three_ints_server.o"
+	@echo "... src/add_three_ints_server.i"
+	@echo "... src/add_three_ints_server.s"
 	@echo "... src/add_two_ints_client.o"
 	@echo "... src/add_two_ints_client.i"
 	@echo "... src/add_two_ints_client.s"

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/ktkoffroth/Documents/UGA Robotics Club/ROS2-Training/tutorial_ws/src/cpp_srvcli"
+CMAKE_SOURCE_DIR = "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/src/cpp_srvcli"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/ktkoffroth/Documents/UGA Robotics Club/ROS2-Training/tutorial_ws/build/cpp_srvcli"
+CMAKE_BINARY_DIR = "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/build/cpp_srvcli"
 
 # Utility rule file for cpp_srvcli_uninstall.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = "/home/ktkoffroth/Documents/UGA Robotics Club/ROS2-Training/t
 include CMakeFiles/cpp_srvcli_uninstall.dir/progress.make
 
 CMakeFiles/cpp_srvcli_uninstall:
-	/usr/bin/cmake -P /home/ktkoffroth/Documents/UGA\ Robotics\ Club/ROS2-Training/tutorial_ws/build/cpp_srvcli/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
+	/usr/bin/cmake -P /home/ktkoffroth/Documents/UGA\ Robotics\ Club/ROS\ Environments/tutorial_ws/build/cpp_srvcli/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
 
 cpp_srvcli_uninstall: CMakeFiles/cpp_srvcli_uninstall
 cpp_srvcli_uninstall: CMakeFiles/cpp_srvcli_uninstall.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/cpp_srvcli_uninstall.dir/clean:
 .PHONY : CMakeFiles/cpp_srvcli_uninstall.dir/clean
 
 CMakeFiles/cpp_srvcli_uninstall.dir/depend:
-	cd "/home/ktkoffroth/Documents/UGA Robotics Club/ROS2-Training/tutorial_ws/build/cpp_srvcli" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/ktkoffroth/Documents/UGA Robotics Club/ROS2-Training/tutorial_ws/src/cpp_srvcli" "/home/ktkoffroth/Documents/UGA Robotics Club/ROS2-Training/tutorial_ws/src/cpp_srvcli" "/home/ktkoffroth/Documents/UGA Robotics Club/ROS2-Training/tutorial_ws/build/cpp_srvcli" "/home/ktkoffroth/Documents/UGA Robotics Club/ROS2-Training/tutorial_ws/build/cpp_srvcli" "/home/ktkoffroth/Documents/UGA Robotics Club/ROS2-Training/tutorial_ws/build/cpp_srvcli/CMakeFiles/cpp_srvcli_uninstall.dir/DependInfo.cmake" --color=$(COLOR)
+	cd "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/build/cpp_srvcli" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/src/cpp_srvcli" "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/src/cpp_srvcli" "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/build/cpp_srvcli" "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/build/cpp_srvcli" "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/build/cpp_srvcli/CMakeFiles/cpp_srvcli_uninstall.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/cpp_srvcli_uninstall.dir/depend
 

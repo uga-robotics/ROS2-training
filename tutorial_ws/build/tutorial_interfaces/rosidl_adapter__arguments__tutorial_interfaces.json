@@ -1,0 +1,7 @@
+{
+  "package_name": "tutorial_interfaces",
+  "non_idl_tuples": [
+    "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/src/tutorial_interfaces:msg/Num.msg",
+    "/home/ktkoffroth/Documents/UGA Robotics Club/ROS Environments/tutorial_ws/src/tutorial_interfaces:srv/AddThreeInts.srv"
+  ]
+}
